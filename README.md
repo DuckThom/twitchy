@@ -3,7 +3,7 @@
 ## Installation:
 1. Clone this repository
 2. Run `git submodule init; git submodule update`
-3. Make sure the following python module are installed `requests`, `json`, `re` `argparse`, `random` and  `m3u8`. If one or more are missing, they can be installed using `python-pip` (`sudo pip install <module_name>`)
+3. Make sure the following python modules are installed `requests`, `json`, `re` `argparse`, `random` and  `m3u8`. If one or more are missing, they can be installed using `python-pip` (`sudo pip install <module_name>`)
 
 ## Usage:
 ```
