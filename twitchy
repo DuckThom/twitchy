@@ -4,7 +4,7 @@ from os import system
 import argparse
 
 if __name__=="__main__":
-	parser = argparse.ArgumentParser('Play a stream from twitch')
+	parser = argparse.ArgumentParser('./twitchy')
 	parser.add_argument('channel_name', help="Name of the twitch channel")
 	parser.add_argument('-na', '--no-audio', action="store_true", help="Disable audio (default: enable audio)")
 	parser.add_argument('-nv', '--no-video', action="store_true", help="Disable video (default: enable video)")
