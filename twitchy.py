@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+from os import system
+import argparse
+
+if __name__=="__main__":
+	parser = argparse.ArgumentParser('Play a stream from twitch')
+	parser.add_argument('channel_name', help="Name of the twitch channel")
+	parser.add_argument('-na', '--no-audio', action="store_true", help="Disable audio (default: enable audio)")
+	parser.add_argument('-nv', '--no-video', action="store_true", help="Disable video (default: enable video)")
+	args = parser.parse_args()
+	system("cvlc " + ("--no-video " if args.no_video else " ") + ("--no-audio " if args.no_audio else " ") + "$(python tlu/twitch_live_url.py " + args.channel_name + " | grep 'chunked')")
