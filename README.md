@@ -7,7 +7,7 @@
 
 ## Usage:
 ```
-./twitchy [-h] [-na] [-nv] channel_name
+./twitchy [-h] [-na] [-nv] [-v] [-s] channel_name
 
 positional arguments:
 channel_name     Name of the twitch channel
