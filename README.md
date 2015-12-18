@@ -13,8 +13,10 @@ positional arguments:
 channel_name     Name of the twitch channel
 
 optional arguments:
--h, --help       show this help message and exit
--na, --no-audio  Disable audio (default: enable audio)
--nv, --no-video  Disable video (default: enable video)
+-h,  --help      Show this help message and exit
+-na, --no-audio  Disable audio (default: enabled)
+-nv, --no-video  Disable video (default: enabled)
+-v,  --verbose   Show more output (default: disabled)
+-s,  --screen    Start the stream in a screen session (default: disabled)
 ```
 
