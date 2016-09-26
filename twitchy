@@ -6,46 +6,46 @@ import argparse
 import platform
 
 if __name__=="__main__":
-	rootdir = os.path.dirname(os.path.realpath(sys.argv[0]))
-        system = platform.system()
+    rootdir = os.path.dirname(os.path.realpath(sys.argv[0]))
+    system = platform.system()
 
-        if system == "Darwin":
-                player = "Quicktime Player"
-        elif system == "Linux":
-                player = "cvlc"
-        elif system == "Windows":
-                raise Exception('Windows is not supported')
+    if system == "Darwin":
+        player = "Quicktime Player"
+    elif system == "Linux":
+        player = "cvlc"
+    elif system == "Windows":
+        raise Exception('Windows is not supported')
 
-	parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser()
 
-	parser.add_argument('channel_name', help="Name of the twitch channel")
-	parser.add_argument('-na', '--no-audio', action="store_true", help="Disable audio (default: enable audio)")
-	parser.add_argument('-nv', '--no-video', action="store_true", help="Disable video (default: enable video)")
-	parser.add_argument('-v' , '--verbose' , action="store_true", help="Show more output (default: disabled)")
-	parser.add_argument('-s' , '--screen'  , action="store_true", help="Start the stream in a screen session (default: disabled)")
+    parser.add_argument('channel_name', help="Name of the twitch channel")
+    parser.add_argument('-na', '--no-audio', action="store_true", help="Disable audio (default: enable audio)")
+    parser.add_argument('-nv', '--no-video', action="store_true", help="Disable video (default: enable video)")
+    parser.add_argument('-v' , '--verbose' , action="store_true", help="Show more output (default: disabled)")
+    parser.add_argument('-s' , '--screen'  , action="store_true", help="Start the stream in a screen session (default: disabled)")
 
-	args = parser.parse_args()
+    args = parser.parse_args()
 
-	if args.verbose:
-		print ("Current directory:  " + os.getcwd())
-		print ("Twitchy location:   " + rootdir)
-                print ("Detected platform:  " + platform.system())
-                print ("Using player:       " + player)
-                print ("\n")
+    if args.verbose:
+        print ("Current directory:  " + os.getcwd())
+        print ("Twitchy location:   " + rootdir)
+        print ("Detected platform:  " + platform.system())
+        print ("Using player:       " + player)
+        print ("\n")
 
-	print ("Opening the " + args.channel_name + " stream")
+    print ("Opening the " + args.channel_name + " stream")
 
-        if player == "Quicktime Player":
-                os.system("open -a '" + player + "' $(python '" + rootdir + "/tlu/twitch_live_url.py' " + args.channel_name + " | grep 'chunked')")
-        elif player == "cvlc":
-                os.system(
-                        ("screen -mS twitch " if args.screen else "") +
-                        "cvlc " +
-                        "--play-and-exit " + 
-                        ("-q " if not args.verbose else " ") + 
-                        ("--no-video " if args.no_video else " ") + 
-                        ("--no-audio " if args.no_audio else " ") + 
-                        "$(python '" + rootdir + "/tlu/twitch_live_url.py' " + args.channel_name + " | grep 'chunked')"
-                )
-        else:
-                raise Exception("Unknown player: " + player)
+    if player == "Quicktime Player":
+        os.system("open -a '" + player + "' $(python '" + rootdir + "/tlu/twitch_live_url.py' " + args.channel_name + " | grep 'chunked')")
+    elif player == "cvlc":
+        os.system(
+            ("screen -mS twitch " if args.screen else "") +
+            "cvlc " +
+            "--play-and-exit " + 
+            ("-q " if not args.verbose else " ") + 
+            ("--no-video " if args.no_video else " ") + 
+            ("--no-audio " if args.no_audio else " ") + 
+            "$(python '" + rootdir + "/tlu/twitch_live_url.py' " + args.channel_name + " | grep 'chunked')"
+        )
+    else:
+        raise Exception("Unknown player: " + player)
